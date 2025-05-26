@@ -12,6 +12,10 @@ RUN --mount=type=cache,target=/var/cache/apt \
     libpng-dev && \
     rm -rf /var/lib/apt/lists/*
 
+# renovate: datasource=github-releases depName=dotenv-linter packageName=dotenv-linter/dotenv-linter
+ENV DOTENV_LINTER_VERSION=v3.3.0
+RUN curl -sSfL "https://raw.githubusercontent.com/dotenv-linter/dotenv-linter/${DOTENV_LINTER_VERSION}/install.sh" | sh -s -- -b /usr/bin
+
 COPY docker/dev.bashrc /usr/local/etc/
 RUN echo '. /usr/local/etc/dev.bashrc' >> /etc/bash.bashrc
 
