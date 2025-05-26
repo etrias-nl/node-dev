@@ -1,0 +1,27 @@
+FROM node:22.16.0-slim
+
+# renovate: datasource=github-releases depName=npm packageName=npm/cli
+ENV NPM_VERSION=11.4.1
+RUN npm install -g "npm@${NPM_VERSION}"
+
+RUN --mount=type=cache,target=/var/cache/apt \
+    apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates dnsutils iputils-ping lsof net-tools \
+    git vim nano curl wget jq bash-completion unzip  \
+    yamllint shellcheck \
+    libpng-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY docker/dev.bashrc /usr/local/etc/
+RUN echo '. /usr/local/etc/dev.bashrc' >> /etc/bash.bashrc
+
+RUN npm completion > /etc/bash_completion.d/npm
+RUN chmod go+w /etc/bash_completion.d
+
+WORKDIR /app
+
+RUN git config --global --add safe.directory /app
+RUN npm config --global set engine-strict=true
+RUN npm config --global set logs-max=0
+
+EXPOSE 9000
