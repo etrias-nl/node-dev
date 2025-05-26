@@ -27,7 +27,7 @@ gh api "/repos/${repo}/commits/$(git rev-parse HEAD)/check-runs" | jq -e '.check
 
 # set versions
 curr_version="$(git describe --abbrev=0 --tags || echo "")"
-next_version="$(cat Dockerfile | grep 'FROM etriasnl/php-fpm:' | cut -f2 -d':' | cut -f1 -d '-')-$(($(git describe --tags --abbrev=0 | cut -f2 -d '-') + 1))"
+next_version="$(cat Dockerfile | grep 'FROM node:' | cut -f2 -d':' | cut -f1 -d '-')-$(($(git describe --tags --abbrev=0 | cut -f2 -d '-') + 1))"
 
 # confirm release
 echo "Releasing ${curr_version} -> ${next_version}"
