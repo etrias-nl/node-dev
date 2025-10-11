@@ -1,7 +1,7 @@
 FROM node:22.19.0-slim
 
 # renovate: datasource=github-releases depName=npm packageName=npm/cli
-ENV NPM_VERSION=11.6.0
+ENV NPM_VERSION=11.6.2
 RUN npm install -g "npm@${NPM_VERSION}"
 
 RUN --mount=type=cache,target=/var/cache/apt \
