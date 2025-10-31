@@ -1,13 +1,5 @@
 FROM node:22.19.0-slim
 
-# renovate: datasource=github-releases depName=npm packageName=npm/cli
-ENV NPM_VERSION=11.6.0
-RUN npm install -g "npm@${NPM_VERSION}"
-
-# renovate: datasource=github-releases depName=playwright packageName=microsoft/playwright
-ENV PLAYWRIGHT_VERSION=1.56.1
-RUN npm install -g "playwright@${PLAYWRIGHT_VERSION}"
-
 RUN --mount=type=cache,target=/var/cache/apt \
     apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates dnsutils iputils-ping lsof net-tools \
@@ -15,6 +7,14 @@ RUN --mount=type=cache,target=/var/cache/apt \
     yamllint shellcheck \
     libpng-dev && \
     rm -rf /var/lib/apt/lists/*
+
+# renovate: datasource=github-releases depName=npm packageName=npm/cli
+ENV NPM_VERSION=11.6.0
+RUN npm install -g "npm@${NPM_VERSION}"
+
+# renovate: datasource=github-releases depName=playwright packageName=microsoft/playwright
+ENV PLAYWRIGHT_VERSION=1.56.1
+RUN npm install -g "playwright@${PLAYWRIGHT_VERSION}"
 
 # renovate: datasource=github-releases depName=dotenv-linter packageName=dotenv-linter/dotenv-linter
 ENV DOTENV_LINTER_VERSION=v4.0.0
