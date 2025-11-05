@@ -12,10 +12,6 @@ RUN --mount=type=cache,target=/var/cache/apt \
 ENV NPM_VERSION=11.6.0
 RUN npm install -g "npm@${NPM_VERSION}"
 
-# renovate: datasource=github-releases depName=playwright packageName=microsoft/playwright
-ENV PLAYWRIGHT_VERSION=1.56.1
-RUN npm install -g "playwright@${PLAYWRIGHT_VERSION}"
-
 # renovate: datasource=github-releases depName=dotenv-linter packageName=dotenv-linter/dotenv-linter
 ENV DOTENV_LINTER_VERSION=v4.0.0
 RUN curl -sSfL "https://raw.githubusercontent.com/dotenv-linter/dotenv-linter/${DOTENV_LINTER_VERSION}/install.sh" | sh -s -- -b /usr/bin
