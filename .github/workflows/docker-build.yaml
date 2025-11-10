@@ -46,7 +46,6 @@ jobs:
                     docker run --rm '${{ steps.build.outputs.imageid }}' yamllint --version
                     docker run --rm '${{ steps.build.outputs.imageid }}' shellcheck --version
                     docker run --rm '${{ steps.build.outputs.imageid }}' dotenv-linter --version
-                    docker run --rm '${{ steps.build.outputs.imageid }}' playwright --version
             -
                 uses: docker/login-action@v3.6.0
                 with:
@@ -61,7 +60,6 @@ jobs:
                     flavor: |
                         latest=false
                         suffix=-${{ matrix.runner }}
-                if: github.ref_type == 'tag'
             -
                 uses: docker/build-push-action@v6.18.0
                 env:
