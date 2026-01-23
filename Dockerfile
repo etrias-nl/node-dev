@@ -1,4 +1,4 @@
-FROM node:25.2.1-slim
+FROM node:25.3.0-slim
 
 RUN --mount=type=cache,target=/var/cache/apt \
     apt-get update && apt-get install -y --no-install-recommends \
