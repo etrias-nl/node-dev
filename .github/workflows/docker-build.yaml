@@ -52,7 +52,7 @@ jobs:
                     docker run --rm '${{ steps.build.outputs.imageid }}' shellcheck --version
                     docker run --rm '${{ steps.build.outputs.imageid }}' dotenv-linter --version
             -
-                uses: docker/login-action@v3.6.0
+                uses: docker/login-action@v3.7.0
                 with:
                     username: ${{ secrets.DOCKER_HUB_USERNAME }}
                     password: ${{ secrets.DOCKER_HUB_PASSWORD }}
@@ -91,7 +91,7 @@ jobs:
                 with:
                     keep-state: true
             -
-                uses: docker/login-action@v3.6.0
+                uses: docker/login-action@v3.7.0
                 with:
                     username: ${{ secrets.DOCKER_HUB_USERNAME }}
                     password: ${{ secrets.DOCKER_HUB_PASSWORD }}
