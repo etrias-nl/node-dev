@@ -9,7 +9,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
     rm -rf /var/lib/apt/lists/*
 
 # renovate: datasource=github-releases depName=npm packageName=npm/cli
-ENV NPM_VERSION=11.10.0
+ENV NPM_VERSION=11.10.1
 RUN npm install -g "npm@${NPM_VERSION}"
 
 # renovate: datasource=github-releases depName=dotenv-linter packageName=dotenv-linter/dotenv-linter
